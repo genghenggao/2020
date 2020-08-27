@@ -1,0 +1,7 @@
+# Win10应用商店连不上网 
+
+**1、打开“运行”输入 inetcpl.cpl （“WINDOWS”+“R”键，输入 inetcpl.cpl亦可）**
+
+**2、点开高级往下拉，勾上"使用TLS 1.2"选项，或者点还原高级设置。**
+
+（原作者：[win10应用商店打不开，错误代码0x80131500](https://www.cnblogs.com/gitwow/p/10344374.html)）

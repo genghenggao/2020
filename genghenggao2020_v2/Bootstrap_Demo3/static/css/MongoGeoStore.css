@@ -1,0 +1,41 @@
+.mar20 {
+    margin-top: 20px;
+}
+
+/* form.form-horizontal {
+    margin-top: 250px;
+} */
+
+img {
+    margin-top: 25px;
+}
+
+
+#login_box::before {
+    content: "";
+    /* background-image: url(../images/home.jpg); */
+    opacity: 0.6;
+    z-index: -1;
+    background-size: 640px 400px;
+    width: 640px;
+    height: 400px;
+    position: absolute;
+    /* 一定要设置position:absolute,这样才能设置z-index，让背景处于内容的下一层 */
+    top: 0px;
+    left: 0px;
+    border-radius: 40px;
+}
+
+#login_box {
+    position: fixed;
+    left: 50%;
+    top: 200px;
+    width: 640px;
+    height: 400px;
+    margin-left: -250px;
+    border-radius: 40px;
+    box-shadow: 10px 10px 5px #888;
+    border: 1px solid #666;
+
+    text-align: center;
+}
