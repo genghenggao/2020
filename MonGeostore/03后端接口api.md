@@ -5,20 +5,21 @@
 1、在mongeostore_app目录下的models.py里写一个model
 
 ```python
-class mysegy(models.Model):
+class Mysegy(models.Model):
     num_id = models.CharField(verbose_name="编号", max_length=50)
-    x_line = models.FloatField()
-    y_line = models.FloatField()
-    value = models.FloatField()
-    author = models.CharField(verbose_name="记录人员", max_length=10)
+    x_line = models.FloatField(default=0)
+    y_line = models.FloatField(default=0)
+    value = models.FloatField(default=0)
+    author = models.CharField(verbose_name="记录人员", max_length=10,default="henggao")
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.num_id
+
 ```
 
-![](IMG/微信截图_20200827203848.png)
+![](IMG/微信截图_20200828152321.png)
 
 
 
@@ -45,12 +46,12 @@ def add_segy(request):
         response['error_num'] = 1
 
     return JsonResponse(response)
-s
+
 @require_http_methods(['GET'])
 def show_segys(request):
     response = {}
     try:
-        segys = Mysegy.object.filter()
+        segys = Mysegy.objects.filter()
         response['list'] = json.loads(serializers.serialize("json", segys))
         response['msg'] = 'success'
         response['error_num'] = 0
@@ -61,7 +62,7 @@ def show_segys(request):
     return JsonResponse(response)
 ```
 
-![](IMG/微信截图_20200827205942.png)
+![](IMG/微信截图_20200828152034.png)
 
 3、在mongeostore_app目录下，新增一个urls.py,把新增的两接口添加到路由里
 
@@ -135,4 +136,4 @@ http://127.0.0.1:8000/api/add_segy?num_id=test
 
   http://127.0.0.1:8000/api/show_segys
 
-  ![](IMG/微信截图_20200827214040.png)
+  ![](IMG/微信截图_20200828152202.png)

@@ -1,6 +1,23 @@
 # Django默认数据库切换为MongoDB
 
-序列化
+[TOC]
+
+
+
+- 序列化
+
+## 前言
+
+**记得激活虚拟环境**
+
+```
+#激活虚拟环境,先切换到目录
+cd mongeostore_env
+
+.\Scripts\activate
+```
+
+
 
 ## 0、借助第三方模块djongo
 
@@ -21,6 +38,8 @@ pip install djongo
 ```
 
 - 安装完成之后，可以直接在Django中配置MongoDB数据库的信息了。
+
+
 
 ## 1、数据库设置
 
