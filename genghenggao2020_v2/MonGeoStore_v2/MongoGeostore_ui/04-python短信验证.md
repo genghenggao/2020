@@ -82,7 +82,6 @@ def send_sms_multi(phone_num_list, template_id, param_list):
 
   ```python
   from django.shortcuts import render, HttpResponse
-  ifrom django.shortcuts import render, HttpResponse
   import random 
   from utils.tencent.sms import send_sms_single
   
