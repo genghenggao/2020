@@ -21,6 +21,8 @@
 - axios拦截器
   - 在请求或响应被处理前拦截它们
 
+
+
 ## 1、封装要点
 
 使用axios发起一个请求比较简单，但项目多了，代码变得越来越难以维护。对axios进行二次封装，时的项目各个组件能够复用，容易维护。
@@ -36,6 +38,21 @@
 
 
 ## 2、文件结构
+
+### 0、路由设置
+
+| URL        | 视图                 | 模板           | 说明 |
+| ---------- | -------------------- | -------------- | ---- |
+| /index/    | login.views.index    | index.html     | 主页 |
+| /login/    | login.views.login    | login.html     | 登录 |
+| /register/ | login.views.register | register.html  | 注册 |
+| /logout/   | login.views.logout   | 无需专门的页面 | 登出 |
+
+- 重要说明：由于本项目目的是打造一个针对管理系统、应用程序等需求下的可重用的登录/注册app，而不是门户网站、免费博客等无需登录即可访问的网站，所以在url路由、跳转策略和文件结构的设计上都是尽量自成体系。具体访问的策略如下：
+  - 未登录人员，不论是访问index还是login和logout，全部跳转到login界面
+  - 已登录人员，访问login会自动跳转到index页面
+  - 已登录人员，不允许直接访问register页面，需先logout
+  - 登出后，自动跳转到login界面
 
 ### 1、http目录
 
@@ -279,11 +296,39 @@ export default {
   - role.js
   - user.js
 
+#### login.js
+
+```js
+import axios from '../axios'
+
+/* 
+ * 系统登录模块
+ */
+
+// 登录
+export const login = data => {
+    return axios({
+        url: 'login',
+        method: 'post',
+        data
+    })
+}
+
+// 登出
+export const logout = () => {
+    return axios({
+        url: 'logout',
+        method: 'get'
+    })
+}
+
+```
+
 
 
 #### users.js
 
-```
+```js
 import axios from '../axios'
 
 /* 
@@ -320,6 +365,41 @@ export const findPermissions = (params) => {
         url: '/user/findPermissions',
         method: 'get',
         params
+    })
+}
+```
+
+#### config.js
+
+```js
+import axios from '../axios'
+
+/* 
+ * 系统配置模块
+ */
+
+// 保存
+export const save = (data) => {
+    return axios({
+        url: '/config/save',
+        method: 'post',
+        data
+    })
+}
+// 删除
+export const batchDelete = (data) => {
+    return axios({
+        url: '/config/delete',
+        method: 'post',
+        data
+    })
+}
+// 分页查询
+export const findPage = (data) => {
+    return axios({
+        url: '/config/findPage',
+        method: 'post',
+        data
     })
 }
 ```
@@ -383,3 +463,144 @@ npm install js-cookie
 
 
 ### 6、测试案例
+
+#### 1、登陆页面
+
+- 在登录页面Login.vue中，添加登录按钮，单击处理函数axios调用login接口返回数据。
+
+- 成功返回之后，弹出框，显示token信息，然后将token放入Cookie并跳转到主页。
+
+  - Login.vue
+
+    ```
+    <!--
+     * @Description: henggao_learning
+     * @version: v1.0.0
+     * @Author: henggao
+     * @Date: 2020-08-31 15:03:39
+     * @LastEditors: henggao
+     * @LastEditTime: 2020-09-03 09:08:01
+    -->
+    <template>
+      <div id="poster">
+        <el-form class="login-container" label-position="left" label-width="80px">
+          <h3 class="login_title">MongeoStore</h3>
+          <el-form-item prop="username" label="用户名:">
+            <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="请输入账号"></el-input>
+          </el-form-item>
+          <el-form-item prop="password" label="密码:">
+            <el-input
+              type="password"
+              v-model="loginForm.password"
+              auto-complete="off"
+              placeholder="请输入密码"
+              show-password
+            ></el-input>
+          </el-form-item>
+          <el-form-item style="width: 100%">
+            <el-button
+              type="primary"
+              style="width: 100%;background: #505458;border: none"
+              v-on:click="login"
+            >登录</el-button>
+            <div class="register">
+              <el-link :underline="false" type="primary">忘记密码？</el-link>
+              <el-link class="register_id" :underline="false" type="primary" href="/register">注册</el-link>
+            </div>
+          </el-form-item>
+        </el-form>
+      </div>
+    </template>
+    
+    <script>
+    import Cookies from "js-cookie";
+    import router from "@/router";
+    export default {
+      name: "login",
+      data() {
+        return {
+          loginForm: {
+            username: "",
+            password: ""
+          },
+          responseResult: []
+        };
+      },
+      methods: {
+        // login() {
+        //   var _this = this;
+        //   console.log(this.$store.state);
+        //   this.$axios
+        //     .post("/login", {
+        //       username: this.loginForm.username,
+        //       password: this.loginForm.password
+        //     })
+        //     .then(successResponse => {
+        //       if (successResponse.data.code === 200) {
+        //         _this.$store.commit("login", _this.loginForm);
+        //         var path = this.$route.query.redirect;
+        //         this.$router.replace({
+        //           path: path === "/" || path === undefined ? "/index" : path
+        //         });
+        //       }
+        //     })
+        //     // eslint-disable-next-line no-unused-vars
+        //     .catch(failResponse => {});
+        // }
+    
+        login() {
+          this.$api.login
+            .login()
+            .then(function(res) {
+              alert(res.token);
+              Cookies.set("token", res.token); // 放置token到Cookie
+              router.push("/"); // 登录成功，跳转到主页
+            })
+            .catch(function(res) {
+              alert(res);
+            });
+        }
+      }
+    };
+    </script>
+    
+    <style lang="scss" scoped>
+    #poster {
+      background: url("../assets/images/background.jpg") no-repeat;
+      background-position: center;
+      height: 100%;
+      width: 100%;
+      background-size: cover;
+      position: fixed;
+    }
+    
+    .login-container {
+      border-radius: 15px;
+      background-clip: padding-box;
+      margin: 90px auto;
+      width: 350px;
+      padding: 35px 35px 15px 35px;
+      background: #fff;
+      border: 1px solid #eaeaea;
+      box-shadow: 0 0 25px #cac6c6;
+    }
+    
+    .login_title {
+      margin: 0px auto 40px auto;
+      text-align: center;
+      color: #505458;
+    }
+    .register {
+      position: relative;
+      right: 40px;
+      // width: 100%;
+    }
+    .register_id {
+      right: -80px;
+    }
+    </style>
+    ```
+
+    ![](IMG/微信截图_20200903092118.png)
+
+  - 由于这里还没有用户信息，点击确定还不能跳转到主页Home
