@@ -114,7 +114,7 @@ TENCENT_SMS_SIGN = 'iDataSharing'
 
 - 修改对应的sms.py
 
-```
+```python
 '''
 @Description: 
 @Version: 1.0
@@ -208,3 +208,31 @@ TENCENT_SMS_SIGN = 'iDataSharing'
 终端返回如下
 
 ![](IMG/henggao_2020-05-21_20-40-13.png)
+
+
+
+## 2、进一步完善
+
+对views.py进行完善，这样就可以判断是注册还是登录。
+
+```python
+def send_sms(request):
+    '''发送短信
+        ?tpl=login  -> 611307
+        ?tpl=register -> 611200
+
+    '''
+    tpl = request.GET.get('tpl')
+    template_id = settings.TENCENT_SMS_TEMPLATE.get(tpl)
+    if not template_id:
+        return HttpResponse('模板不存在') 
+
+    code = random.randrange(1000, 9999)
+    res = send_sms_single('15351818127', template_id, [code, ])
+    if res['result'] == 0:
+        return HttpResponse('成功')
+    else:
+        return HttpResponse(res['errmsg'])
+
+```
+
