@@ -62,3 +62,32 @@ if "gridfs" in dblist:
 
 ```
 
+
+
+## pymongo连接MongoDB
+
+```
+import datetime
+import pymongo
+from pymongo import MongoClient
+
+client = MongoClient("192.168.55.110", 27017)
+collection = client.test.expire
+collection.create_index(
+    [("time", pymongo.ASCENDING)], expireAfterSeconds=66)
+data = {
+    "mobile":15351818127,
+    "code": 123456,
+}
+# collection.insert(data)
+dblist = client.list_database_names()
+code = collection.find_one()
+mobilecode = collection.find_one({"mobile":15351818127})
+# print(dblist)
+# print(code)
+print(mobilecode)
+print(mobilecode['code'])
+# print(type(mobilecode))
+# print(collection)
+```
+
