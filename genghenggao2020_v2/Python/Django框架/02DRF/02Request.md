@@ -30,3 +30,36 @@
   ```
 
   
+
+
+
+
+
+解析器：根据用户格式不同进行数据解析
+
+- content-type：x-www-lenco
+- 序列化
+- 渲染器
+  - 可以帮助   我们将json数据渲染到页面上进行友好展示
+
+
+
+面向对象的继承
+
+
+
+2、分页
+
+视图
+
+```python
+class pageArticleView(APIView):
+	def get(self,request,*args，**kwargs)：
+		queryset = models.Artcile.objects.all()
+        
+        
+```
+
+系统架构
+
+cssm vue+
