@@ -62,4 +62,51 @@ class pageArticleView(APIView):
 
 系统架构
 
-cssm vue+
+cssm vue+drf
+
+功能实现
+
+- APIView
+
+- GenericAPIView，桥梁 
+
+- ListAPIView，CreateAPIView
+- RetrieveAPIView，UpdateAPIView，DestroyAPIView
+- restful
+- 筛选器
+- drf组件
+
+类继承关系
+
+iniitial()在视图函数之前
+
+request封装老的request
+
+## 版本
+
+- 三步使用
+  - url中version
+  - 在视图中应用
+  - 在settings中配置
+  - uuid.uuid4()
+- 登录列表
+- 登录视图
+- 写认证类
+- Login视图不应用认证
+
+
+
+## 权限
+
+request
+
+BasePermission 
+
+
+
+
+
+## 项目
+
+- 删除View，新建View目录，在View目录下新建
+- 路由分发
