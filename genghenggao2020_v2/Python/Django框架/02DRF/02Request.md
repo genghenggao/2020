@@ -108,5 +108,87 @@ BasePermission
 
 ## 项目
 
-- 删除View，新建View目录，在View目录下新建
+- settings.py
+  - "app.apps.mongeostoreConfig"
+  - "rest_framework"
+  - REST_FRAMEWORK={}
+- 做路由分发
+  - 版本
+- 序列化
+- 视图会越写越多，删除View，新建View目录，在View目录下新建
 - 路由分发
+- 登录LoginView
+  - post
+- 认证
+- 权限
+- 
+
+- https代替http
+- 在url中体线api标识
+- 接口体现版本
+- restful
+
+- 跨域
+- drf访问频率限制
+- jwt
+
+## 跨域
+
+Jquery csdn
+
+- 域不同时，永远不存在跨域
+  - crm，非前后端分离，没有跨域
+  - 路飞学城，前后端分离，没有跨域
+- 与不同时，才会存在跨域
+  - 拉勾网，前后端分离，存在跨域（设置响应头解决跨域）
+
+### 解决跨域：CORS
+
+```
+本质在数据返回值设置响应头
+
+from django.shortcuts import render,HttpResponse
+
+def json(request):
+    response = HttpResponse("JSONasdfasdf")
+    response['Access-Control-Allow-Origin'] = "*"
+    return response
+    
+```
+
+### 跨越时，发送了2请求
+
+- 在跨域时，发送一次请求
+
+```
+设置响应头就可以解决
+from django.shortcuts import render,HttpResponse
+
+def json(request):
+    response = HttpResponse("JSONasdfasdf")
+    response['Access-Control-Allow-Origin'] = "*"
+    return response
+```
+
+
+
+- 复杂请求
+
+  - 预检
+
+  - 请求
+
+    ```
+    
+    ```
+
+    
+
+## 项目部署
+
+- crm部署
+- 前后端分离
+
+
+
+## jwt
