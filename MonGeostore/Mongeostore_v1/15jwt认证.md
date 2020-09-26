@@ -80,3 +80,6 @@ from rest_framework_jwt.views import obtain_jwt_token
 
   ![](IMG/微信截图_20200924151442.png)
 
+
+
+参考：https://www.shuzhiduo.com/A/QV5ZvP845y/
