@@ -34,9 +34,10 @@
 
 ## 三区
 
-- Comput Geosci-uk
+- [**Comput Geosci-uk**](https://www.sciencedirect.com/journal/computers-and-geosciences)
   
-  - 计算机与地球科学
+  - 计算机与地球科学  136
+  - 方法
   
 -  Int J Geogr Inf Sci 
   
@@ -67,5 +68,12 @@
 
   
 
-  
+
+## 四区
+
+- Acta Geophys
+  Acta Geophysica
+
+- Chinese J Geophys-ch
+  - 地球物理学报
 
