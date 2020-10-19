@@ -49,3 +49,116 @@ git push -u origin master
 ## 3、Github或Gitee中有空文件夹
 
 修改文件夹名称，上传是否成功？成功在修改回来即可!
+
+
+
+## 4、Git 由于push超大文件导致失败后，虽删除超大文件再次push时仍push此文件解决办法
+
+
+
+[参考1](https://blog.csdn.net/qq997843911/article/details/88979051?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.edu_weight&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.edu_weight)
+
+#### 1 看哪个文件占的大
+
+报错信息：
+
+```bash
+Counting objects: 15, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (14/14), done.
+Writing objects: 100% (15/15), 382.90 MiB | 1.88 MiB/s, done.
+Total 15 (delta 8), reused 0 (delta 0)
+remote: Resolving deltas: 100% (8/8), completed with 7 local objects.
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://g
+it-lfs.github.com.
+remote: error: Trace: 32cfdd82801eb81f072baeca0f5ca78b
+remote: error: See http://git.io/iEPt8g for more information.
+remote: error: File resultDataset/resultDataset/gplus_combined.csv is 1279.62 MB; this exceeds Git
+Hub's file size limit of 100.00 MB
+To git@github.com:LiXiaoRan/dataHandle.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'git@github.com:LiXiaoRan/dataHandle.git'
+```
+
+注意这一句：`remote: error: File resultDataset/resultDataset/gplus_combined.csv is 1279.62 MB; this exceeds Git`可以发现，是gplus_combined.csv 文件太大，超过了100Mb的限制。那么要处理的就是这个文件了。
+
+#### 2 重写commit，删除大文件
+
+```bash
+git filter-branch --force --index-filter 'git rm -rf --cached --ignore-unmatch resultDataset/resultDataset/gplus_combined.csv' --prune-empty --tag-name-filter cat -- --all
+```
+
+#### 需要注意的是，此处可能会报错
+
+出现这个错误
+
+```bash
+Cannot rewrite branches: You have unstaged changes
+```
+
+##### 解决方案：执行`git stash`即可解决。
+
+#### 3 推送修改后的repo
+
+以强制覆盖的方式推送你的repo, 命令如下:
+
+```bash
+git push origin master --force
+```
+
+#### 4 清理和回收空间
+
+虽然上面我们已经删除了文件, 但是我们的repo里面仍然保留了这些objects, 等待垃圾回收(GC), 所以我们要用命令彻底清除它, 并收回空间，命令如下:
+
+```bash
+rm -rf .git/refs/original/
+ 
+git reflog expire --expire=now --all
+ 
+git gc --prune=now
+```
+
+彻底解决。
+
+#### 如果上述方法不管用
+
+可以按照以下方法：
+
+#### 1、移除错误缓存
+
+首先应该移除所有错误的 cache，对于文件：
+
+```bash
+git rm --cached path_of_a_giant_file
+```
+
+对于文件夹：
+
+```bash
+git rm --cached -r path_of_a_giant_dir
+```
+
+例如对于我的例子就是这样的：
+
+```bash
+git rm --cached resultDataset/resultDataset/gplus_combined.csv
+```
+
+#### 2、重新提交：
+
+编辑最后提交信息：
+
+```bash
+git commit --amend
+```
+
+修改 log 信息后保存返回。
+重新提交
+
+```bash
+git push
+```
+
+参考文献
+
+1. [Git] 处理 github 不允许上传超过 100MB 文件的问题：http://www.liuxiao.org/2017/02/git-处理-github-不允许上传超过-100mb-文件的问题/
