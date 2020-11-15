@@ -1,3 +1,41 @@
+# Python与JSON
+
+[TOC]
+
+## 1、对应关系
+
+### 1.1 编码时
+
+| Python数据类型                          | JSON数据类型 |
+| --------------------------------------- | ------------ |
+| dict                                    | object       |
+| list、tuple                             | array        |
+| str                                     | string       |
+| int、float、int、派生的int和float的Enum | number       |
+| True                                    | true         |
+| False                                   | false        |
+| None                                    | null         |
+|                                         |              |
+
+
+
+### 1.2 解码时
+
+| JSON类型       | Python类型 |
+| :------------- | :--------- |
+| object         | dict       |
+| array          | list       |
+| string         | str        |
+| number（int）  | int        |
+| number（real） | float      |
+| true           | True       |
+| false          | False      |
+| null           | None       |
+
+
+
+## 2、转换
+
 Python中，json数据与dict字典以及对象之间的转化，是必不可少的操作。
 
 Python中自带json库。通过`import json`导入。
