@@ -42,7 +42,7 @@ Vue.use(BaiduMap, {
 
 新建一个MapView.vue，测试。
 
-```
+```vue
 <!--
  * @Description: henggao_learning
  * @version: v1.0.0

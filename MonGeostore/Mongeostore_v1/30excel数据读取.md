@@ -36,7 +36,7 @@ pip install xlrd xlwt xlutils
 
 ## 二、Excel数据写入
 
-```pytjon
+```python
 '''
 Description: henggao_learning
 version: v1.0.0

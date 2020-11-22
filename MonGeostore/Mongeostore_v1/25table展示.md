@@ -8,7 +8,7 @@
 
 - views.py
 
-```
+```python
 @require_http_methods(['GET'])
 def FileShow(request):
     """
