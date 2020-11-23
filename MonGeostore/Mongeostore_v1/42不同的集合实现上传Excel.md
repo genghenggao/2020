@@ -589,7 +589,7 @@ database = request.data['colname']  # 从前端拿到数据库名称
 
 - `urls.py`
 
-  ```
+  ```python
      path('commonuploadmeta/', CommonUploadMeta.as_view(),
            name="commonuploadmeta"),  # 上传元数据到GridFS
   ```
