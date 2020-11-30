@@ -188,9 +188,52 @@ models.DrillModel.objects.using('drill').all()   #using('drill')表示使用dril
 
 
 - [ref1](https://blog.csdn.net/weixin_42282496/article/details/80795261)
+
 - [ref2](https://www.cnblogs.com/fu-yong/p/9889423.html)
+
 - [ref3](https://blog.csdn.net/weixin_42134789/article/details/107194373)
 
-- [ref4](https://blog.csdn.net/weixin_30315435/article/details/96323506?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control)
+- [ref4](https://www.cnblogs.com/floodwater/p/9842811.html)
+
+- [ref5](https://blog.csdn.net/weixin_30315435/article/details/96323506?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control)
+
+  
+
+### 小插曲
+
+- `app_label='drill'`并没有起作用，当我使用GridFS存储图片时，`database=‘drill’`似乎要更好用一些。注意我这里针对的是Djongo而非Django。
+
+  ```python
+  grid_fs_storage = GridFSStorage(location='', collection='钻孔测斜表元数据', base_url=''.join(
+      ['', '']), database='drill')
+  
+  
+  class InclinationMetaModel(models.Model):
+      '''钻孔数据管理子系统元数据'''
+  
+      _id = models.CharField(max_length=255)
+      zk_num = models.CharField(max_length=255)
+      # type = models.CharField(max_length=255)
+      zk_type = models.CharField(max_length=30)
+      final_depth = models.CharField(max_length=255)
+      final_date = models.DateTimeField()
+      depth = models.CharField(max_length=255)
+      project_name = models.CharField(max_length=255)
+      company_name = models.CharField(max_length=255)
+      uploader = models.CharField(max_length=255)
+      # zk_histogram = models.ImageField(upload_to='InclinationMetaModels')
+      zk_histogram = models.ImageField(
+          upload_to='InclinationMetaModels', storage=grid_fs_storage)
+  
+      class Meta:
+          verbose_name = "钻孔元数据名"
+          verbose_name_plural = verbose_name
+          # app_label = 'mongeostore_load'  # 如果指定将在drill对应的数据库下创建数据表
+          db_table = '钻孔元数据表测试'  # 自定义表名称，即是对应的Collection，如何对应GriDFS
+  
+      def __str__(self) -> str:
+          return self.zk_num
+  
+  ```
 
   
