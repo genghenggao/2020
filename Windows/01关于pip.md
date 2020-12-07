@@ -8,7 +8,7 @@
 
 在使用pip 安装第三库时，提示版本太低了，需要升级，然后按照提示进行了升级，没想到升级不成功，反而原有的也被卸载了
 
-### 解决办法：
+### 解决办法一：
 
 1、windows打开命令提示符，输入 `python -m ensurepip`
 
@@ -25,3 +25,17 @@ python -m ensurepip
 ```
 python -m pip install --upgrade pip
 ```
+
+
+
+
+
+### 解决方法二
+
+- 运行如下两行代码即可
+
+```
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+```
+
