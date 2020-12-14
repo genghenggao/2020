@@ -359,3 +359,7 @@
   - [ref](https://blog.csdn.net/tly599167/article/details/107378249)
   - [ref](https://www.shuzhiduo.com/A/B0zqa8A3zv/)
   - [ref](https://www.shuzhiduo.com/R/mo5kxQ9ndw/)
+
+
+
+补充：由于定位表需要查询钻孔信息，更改为通过钻孔号进行查询柱状图（一般一个工区钻孔号单一）
