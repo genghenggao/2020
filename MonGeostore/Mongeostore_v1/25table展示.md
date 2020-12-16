@@ -6,7 +6,7 @@
 
 
 
-- views.py
+- `views.py`
 
 ```python
 @require_http_methods(['GET'])
