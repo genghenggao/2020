@@ -301,3 +301,161 @@ export default {
 
 https://blog.csdn.net/cygdxcw/article/details/89045919
 
+
+
+
+
+### 5、折线图
+
+```vue
+ <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+            <div
+              id="dataviews"
+              class="echartsviews"
+              ref="chart"
+              style="width: 780px; height: 400px"
+            ></div>
+```
+
+
+
+```vue
+ // 基于准备好的dom，初始化echarts实例
+            let myChart = this.$echarts.init(
+              document.getElementById("dataviews")
+            );
+            // let mychart = echarts.init(this.$refs.chart);
+            // 指定图表的配置项和数据
+            var timeData = [];
+            for (var i = 0; i < 201; i++) {
+              timeData.push(i);
+            }
+            console.log(timeData);
+            var tmpData = [];
+            for (var i = 0; i < 201; i++) {
+              tmpData.push(Math.floor(Math.random() * 10));
+            }
+
+            let option = {
+              title: {
+                text: "雨量流量关系图",
+                subtext: "数据来自西安兰特水电测控技术有限公司",
+                left: "center",
+              },
+              tooltip: {
+                trigger: "axis",
+                axisPointer: {
+                  animation: false,
+                },
+              },
+              legend: {
+                data: ["流量", "降雨量"],
+                left: 10,
+              },
+              toolbox: {
+                feature: {
+                  dataZoom: {
+                    yAxisIndex: "none",
+                  },
+                  restore: {},
+                  saveAsImage: {},
+                },
+              },
+              axisPointer: {
+                link: { xAxisIndex: "all" },
+              },
+              dataZoom: [
+                {
+                  show: true,
+                  realtime: true,
+                  start: 30,
+                  end: 70,
+                  xAxisIndex: [0, 1],
+                },
+                {
+                  type: "inside",
+                  realtime: true,
+                  start: 30,
+                  end: 70,
+                  xAxisIndex: [0, 1],
+                },
+              ],
+              grid: [
+                {
+                  left: 50,
+                  right: 50,
+                  height: "35%",
+                },
+                {
+                  left: 50,
+                  right: 50,
+                  top: "55%",
+                  height: "35%",
+                },
+              ],
+              xAxis: [
+                {
+                  type: "category",
+                  boundaryGap: false,
+                  axisLine: { onZero: true },
+                  data: timeData,
+                },
+                {
+                  gridIndex: 1,
+                  type: "category",
+                  boundaryGap: false,
+                  axisLine: { onZero: true },
+                  data: timeData,
+                  position: "top",
+                },
+              ],
+              yAxis: [
+                {
+                  name: "流量(m^3/s)",
+                  type: "value",
+                  // max: 10,
+                  // inverse: true,
+                },
+                {
+                  gridIndex: 1,
+                  name: "降雨量(mm)",
+                  type: "value",
+                  inverse: true,
+                },
+              ],
+              series: [
+                {
+                  name: "流量",
+                  type: "line",
+                  symbolSize: 8,
+                  hoverAnimation: false,
+                  data: tmpData,
+                },
+                {
+                  name: "降雨量",
+                  type: "line",
+                  xAxisIndex: 1,
+                  yAxisIndex: 1,
+                  symbolSize: 8,
+                  hoverAnimation: false,
+                  data: tmpData,
+                },
+              ],
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+            // mychart.setOption(option);
+```
+
+- 查看
+
+  ![](IMG/微信截图_20201223200142.png)
+
+  
+
+  
+
+  
+
+  
