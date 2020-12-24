@@ -454,8 +454,19 @@ https://blog.csdn.net/cygdxcw/article/details/89045919
 
   
 
-  
+## 三、Echarts知识点
 
-  
+- ROOT_PATH
 
-  
+```
+Echarts中的ROOT_PATH都表示：https://echarts.apache.org/examples/
+```
+
+- Echarts中数据
+
+  ```
+  https://echarts.apache.org/examples/data/asset/data/
+  ```
+
+- 
+

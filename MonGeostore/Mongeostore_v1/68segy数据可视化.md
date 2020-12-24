@@ -7,7 +7,7 @@
 - 来源于赵老师的代码
 - 两个地方设置参数，取局部一点数据可视化测试，要不跑起来太慢
   - readSEGYData中nTrace，控制可画的道数
-  - getSEGYInformation中nTrace，确认画的倒数
+  - getSEGYInformation中nTrace，确认画的道数
 
 ```python
 # -*- coding: utf-8 -*-
