@@ -107,3 +107,23 @@
 ## 2. 多道数据
 
 - 尝试多道显示，使用懒加载
+
+- 数据读取
+
+  - 后端
+
+    - f.trace[i]读出数组
+    - 写成想要的list
+    - 嵌套列表，[[],[]],使用追加append
+    - 列表写入dict
+    - dict转为字符串，str
+
+  - 前端
+
+    - json字符串转对象
+
+      ```
+       var datajson = eval("(" + res.data + ")");
+      ```
+
+- Echarts

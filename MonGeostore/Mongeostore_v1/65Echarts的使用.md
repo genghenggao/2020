@@ -468,5 +468,11 @@ Echarts中的ROOT_PATH都表示：https://echarts.apache.org/examples/
   https://echarts.apache.org/examples/data/asset/data/
   ```
 
-- 
+- Echarts使用同一个画布
+
+  ```
+   myChart.setOption(option, true); // 加上true表示不合并配置
+  ```
+
+  
 
