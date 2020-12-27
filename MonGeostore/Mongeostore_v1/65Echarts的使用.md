@@ -476,3 +476,13 @@ Echarts中的ROOT_PATH都表示：https://echarts.apache.org/examples/
 
   
 
+- Echarts下Gallery中数据
+
+  ```
+  http://gallery.echartsjs.com
+  
+  //例如
+  http://gallery.echartsjs.com/asset/get/s/data-1528971808162-BkOXf61WX.json
+  ```
+
+  
