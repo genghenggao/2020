@@ -30,7 +30,7 @@ npm i vue-baidu-map --save
 
 在main.js中添加配置
 
-```
+```js
 import Vue from 'vue'
 import BaiduMap from 'vue-baidu-map'
 
