@@ -879,6 +879,8 @@ mongo --port 20000
 
 ### 11、 启动关闭
 
+- 补充一点：**在root权限下**
+
 - mongodb的启动顺序是，先启动所有节点配置服务器（**在节点master、slave1、slave2配置**）
 
   ```shell
