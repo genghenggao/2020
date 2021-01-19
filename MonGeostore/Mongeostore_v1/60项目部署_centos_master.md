@@ -27,3 +27,10 @@ pip install -r requirements.txt
 来一次性安装 `requirements.txt` 里面所有的依赖包，真是非常方便。
 
 - [ref](https://github.com/tgz0514/DeepLearning_Notes_CV/blob/master/other/Python/Python%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E6%89%80%E6%9C%89%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93.md)
+
+
+
+## 二、Vue+Django+Nginx+uWSGI部署生产环境 前后端分离
+
+- MongoDB在CentOS中部署
+- 前后端以后可以采取Docker容器模式开发（）
