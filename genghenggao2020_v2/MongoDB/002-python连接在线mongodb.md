@@ -1,4 +1,14 @@
-### 报错
+# MongoDB
+
+[TOC]
+
+
+
+## 1. MongoDB Atlas
+
+### 1.1 报错
+
+#### 1.1.1 报错001
 
 ```
 pymongo.errors.ConfigurationError: The "dnspython" module must be installed to use mongodb+srv:// URIs
@@ -18,7 +28,9 @@ pymongo.errors.ConfigurationError: The "dnspython" module must be installed to u
   pip install pymongo[srv]
   ```
 
-### 报错
+
+
+#### 1.1.2 报错002
 
 ```
 pymongo.errors.InvalidURI: Username and password must be escaped according to RFC 3986, use urllib.parse.quote_plus()
@@ -34,7 +46,7 @@ pymongo.errors.InvalidURI: Username and password must be escaped according to RF
 
   
 
-### 连接在线mongodb
+### 1.2 连接在线MongoDB
 
 ```python
 '''
@@ -64,9 +76,45 @@ if "gridfs" in dblist:
 
 
 
-## pymongo连接MongoDB
+### 1.3 实例测试
 
-```
+- 写入数据
+
+  ```python
+  import pymongo
+  from pymongo import MongoClient
+  import urllib.parse
+  
+  # username = urllib.parse.quote_plus('henggao')
+  # password = urllib.parse.quote_plus("tel123456")
+  
+  # url = "mongodb+srv://henggao:<password>@mongeostore.tgjjd.mongodb.net/<dbname>?retryWrites=true&w=majority".format(username, password)
+  url = "mongodb+srv://henggao:tel123456@mongeostore.tgjjd.mongodb.net/mongoestore?retryWrites=true&w=majority"
+  # url is just an example (your url will be different)
+  
+  cluster = MongoClient(url)
+  db = cluster['demo01']
+  collection = db['test01']
+  
+  data = {
+      "mobile": 15518501828,
+      "code": 123456,
+  }
+  collection.insert_one(document=data)
+  
+  print(db)
+  print(collection)
+  ```
+
+- 查看
+
+  ![](IMG/微信截图_20210120101842.png)
+
+## 2. CentOS
+
+### pymongo连接MongoDB
+
+```python
 import datetime
 import pymongo
 from pymongo import MongoClient
