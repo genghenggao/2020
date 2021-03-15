@@ -255,7 +255,7 @@
 
   
 
-- `DrillMetaInfo.vue`
+- `DrillMetaData.vue`
 
   - 这里注意router-link中to的使用
 

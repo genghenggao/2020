@@ -41,7 +41,7 @@ C:\Users\用户名\.vscode\extensions
 
 ![](IMG/微信截图_20200207152541.png)
 
-## 3、存在问题
+### 3、存在问题
 
 后续我发现一个小问题，就是必须用这个快捷方式打开才可以
 
@@ -81,3 +81,12 @@ mklink /D "C:\Users\Henggao\.vscode\extensions" "D:\vscode\extensions"
 
 - 现在无论从任务栏打开，还是更新插件位置都是在`D:\vscode\extensions`
 
+
+
+### 5、有待尝试
+
+下面这部分还没试
+
+各位童鞋，其实灰常简单啦，官方文档在Portable Mode部分已经说明了，你只需要在解压后的VSCode目录里新建一个名为data的文件夹，那么以后所有的数据文件（包括用户配置、插件等）都会安装到这个data文件夹里。以前网上流传的加启动选项--extensions-dir [path] 的方法，在部分情景下有不少缺点，这里提到的方法应该是最完美的，百闻不如一试，赶快动手吧~
+
+- https://www.zhihu.com/question/57671963
