@@ -821,7 +821,7 @@ mongo --port 20000
 -  插入测试数据 
 
   ```sql
-  #插入10000条测试数据
+  #插入100000条测试数据
   for(i=1;i<=100000;i++){db.table1.insert({"id":i,"name":"henggao"})};
   ```
 

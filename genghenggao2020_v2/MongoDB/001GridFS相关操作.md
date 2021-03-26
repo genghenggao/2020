@@ -76,3 +76,33 @@ mongofiles list xxx //会查找所有文件名以“xxx”为前缀的文件
 
 参考： https://www.iyunv.com/thread-627105-1-1.html 
 
+
+
+
+
+- 我发现一个问题。当GridFS存储桶前缀为两个字母时，可以使用`--prefix=fs`进行查询，当存储同字母多余两个的时候，怎么不可以。（MongoDB4.2）🤔
+
+```
+mongofiles list -h=192.168.55.110:20000 -d=segyfile --prefix=fs
+```
+
+
+
+## 四. 文件操作
+
+- 以下命令实在mongos下，区别于mongofiles（这是在hduser下）
+
+```shell
+#查询
+db.mysegy.files.find({filename:"timg.jpg"})
+
+#删除
+db.mysegy.files.remove({filename:"timg.jpg"})
+```
+
+![](IMG/微信截图_20210319161817.png)
+
+
+
+
+

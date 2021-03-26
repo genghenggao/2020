@@ -162,3 +162,24 @@ git push
 参考文献
 
 1. [Git] 处理 github 不允许上传超过 100MB 文件的问题：http://www.liuxiao.org/2017/02/git-处理-github-不允许上传超过-100mb-文件的问题/
+
+
+
+
+
+## 5.报错
+
+- 问题：在我尝试拉取github项目的时候报错。
+
+  ```
+  fatal: unable to access 'https://github.com/genghenggao/mongeostore_project.git/': OpenSSL SSL_read: Connection was reset, errno 10054
+  ```
+
+- 解决，输入如下命令，重新拉取即可。
+
+  ```
+  git config --global http.sslVerify "false"
+  ```
+
+  
+
