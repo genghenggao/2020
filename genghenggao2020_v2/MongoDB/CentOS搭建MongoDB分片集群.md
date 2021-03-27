@@ -166,6 +166,12 @@ sudo service mongod stop #关闭服务
 sudo service mongod restart #重启服务
 ```
 
+```shell
+sudo systemctl start mongod #上面命令不行试试这个
+```
+
+
+
 #### 1.7、设置远程访问
 
 1、编辑etc/mongod.conf
