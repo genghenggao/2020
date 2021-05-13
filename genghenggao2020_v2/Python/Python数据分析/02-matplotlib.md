@@ -455,3 +455,20 @@ while True:
 - 运行dice_visual.py,生成结果如图
 
   ![](IMG/dice_visual_sum.svg)
+
+
+
+## 七、绘制极坐标
+
+```
+import matplotlib.pyplot as plt
+import numpy as np
+
+theta = np.arange(0,2*np.pi,0.02)
+ax1 = plt.subplot(121,projection = 'polar')
+ax1.plot(theta,theta/6,'--',lw=2)
+plt.show()
+```
+
+![](IMG/微信截图_20210513092443.png)
+
